@@ -11,7 +11,7 @@ public class addChannel extends Thread{
 	private DataInputStream dis;
 	private DataOutputStream dos;
 	private Socket client;
-	
+	private boolean isSaisir = true;   //verifier si l'utilisateur se deconnecte avant saisir le nom
 	
 	public addChannel(Socket client) throws IOException {
 		dos = new DataOutputStream(client.getOutputStream());
@@ -45,9 +45,11 @@ public class addChannel extends Thread{
 			channel.start(); 
 			
 		} catch (IOException e) {
-			e.printStackTrace();
+			isSaisir = false;
+			System.out.println(client.getRemoteSocketAddress() + " se deconnect");  //si le client se deconncte avant de saisir un nom, server affiche l'erreur
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			isSaisir = false;
+			System.out.println(client.getRemoteSocketAddress() + " se deconnect");
 		}
 		
 			

@@ -13,12 +13,12 @@ public class Mychannel extends Thread{
 	private DataOutputStream dos;
 	private DataInputStream dis;
 	private boolean flag = true;  //boolean pour la fonction run()
-	private int l;				  //enregistrer si le premier participant
+	private int numeroClients;		//le numero de clients pour enregistrer si le premier participant
 	private boolean first = true; //pour server diffuser que autre participant rejoint la conversation
 	
 	public Mychannel(Socket client) throws IOException {
 		this.client = client;
-		this.l = server.clients.size();        
+		this.numeroClients = server.clients.size();        
 		dos = new DataOutputStream(client.getOutputStream());
 		dis = new DataInputStream(client.getInputStream());
 	}
@@ -44,6 +44,7 @@ public class Mychannel extends Thread{
 		} catch (IOException e) {
 			flag = false;                 //s'il y a de probleme, arreter le thread et l'enlever 
 			server.clients.remove(this);
+			str = "je se deconnecte";     //Si un client se déconnecte anormalement, informez les autres clients qu'il s'est déconnecté
 		}
 		return str;
 	}
@@ -54,8 +55,9 @@ public class Mychannel extends Thread{
 			dos.writeUTF(str);
 			dos.flush();
 		} catch (IOException e) {
-			flag = false;
+			flag = false;				//s'il y a de probleme, arreter le thread et l'enlever
 			server.clients.remove(this);
+			System.out.println(client.getRemoteSocketAddress() + " se deconnecte");
 		}	
 	}
 	
@@ -66,7 +68,7 @@ public class Mychannel extends Thread{
 		Set<String> keys = clients.keySet();
 		String name = getName(this);
 
-		if(first && l != 0) {       //pas de premier participant et diffuser une seule fois
+		if(first && numeroClients != 0) {       //pas de premier participant et diffuser une seule fois
  			for(String key : keys) {
 				if(clients.get(key) != this) {
 					clients.get(key).send(name + " a rejoint la conversation"); 
@@ -103,6 +105,6 @@ public class Mychannel extends Thread{
 				e.printStackTrace();
 			}
 		}
-	
+		System.out.println(client.getRemoteSocketAddress() + " se deconnecte");
 	}
 }
