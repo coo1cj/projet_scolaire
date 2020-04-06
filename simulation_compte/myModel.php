@@ -7,13 +7,21 @@ function getMySqliConnection() {
 
 function findUserByLoginPwd($login, $pwd) {
   $mysqli = getMySqliConnection();
-
+  //$login = addslashes(sprintf("%s",$login));
+  //$pwd = addslashes(sprintf("%s",$pwd));
   if ($mysqli->connect_error) {
       echo 'Erreur connection BDD (' . $mysqli->connect_errno . ') '. $mysqli->connect_error;
       $utilisateur = false;
   } else {
-      $req="select nom,prenom,login,id_user,numero_compte,profil_user,solde_compte from users where login='$login' and mot_de_passe='$pwd'";
-      if (!$result = $mysqli->query($req)) {
+	  $req="select nom,prenom,login,id_user,numero_compte,profil_user,solde_compte from users where login=? and mot_de_passe=?";
+ 	  $stmt = $mysqli->stmt_init();               //prevent la injection sql
+	  if(!$stmt->prepare($req)){
+		  echo 'Failed to prepare statement\n';
+	  }else{
+		  $stmt->bind_param("ss",$login,$pwd);
+		  $stmt->execute(); 
+	  }
+      if (!$result = $stmt->get_result()) {
           echo 'Erreur requête BDD ['.$req.'] (' . $mysqli->errno . ') '. $mysqli->error;
           $utilisateur = false;
       } else {
@@ -58,7 +66,8 @@ function findAllUsers() {
 
 function transfert($dest, $src, $mt) {
   $mysqli = getMySqliConnection();
-
+  $dest = htmlspecialchars($dest);
+  $mt = htmlspecialchars($mt);
   if ($mysqli->connect_error) {
       echo 'Erreur connection BDD (' . $mysqli->connect_errno . ') '. $mysqli->connect_error;
       $utilisateur = false;
@@ -104,7 +113,9 @@ function findMessagesInbox($userid) {
 
 function addMessage($to,$from,$subject,$body) {
   $mysqli = getMySqliConnection();
-
+  $subject = htmlentities($subject);
+  $body = htmlentities($body);
+  
   if ($mysqli->connect_error) {
       echo 'Erreur connection BDD (' . $mysqli->connect_errno . ') '. $mysqli->connect_error;
   } else {

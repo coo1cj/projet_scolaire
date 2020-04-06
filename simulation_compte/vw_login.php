@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['token'])){     //prevent le csrf
+		$_SESSION['token'] = md5(microtime());
+	}
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -17,6 +23,7 @@
                 <input type="hidden" name="action" value="authenticate">
                 <input type="text" name="login" placeholder="login"/>
                 <input type="password" name="mdp" placeholder="mot de passe"/>
+				<input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">  
                 <button>login</button>
             </form>
         </div>
@@ -29,7 +36,7 @@
         echo '<p class="errmsg">Votre login/mot de passe est incorrect</p>';
       } else if (isset($_REQUEST["disconnect"])) {
         echo '<p>Vous avez bien été déconnecté.</p>';
-      }
+      } 
       ?>
   </section>
 
