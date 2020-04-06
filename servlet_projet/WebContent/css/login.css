@@ -1,0 +1,98 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #1c223a;
+    line-height: 1.4;
+    vertical-align: middle;
+    padding-top: 5%;
+    display: grid;
+}
+
+fieldset {
+    font-size: 24px;
+    color: #ffffff;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #0044ad;
+    width: 350px;
+    margin: auto;
+    /*align-items: center;*/
+}
+
+legend {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.react ~ .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #3399FF;
+
+}
+
+.react:focus ~ .underline {
+    width: 95%;
+    transition: 0.3s;
+}
+
+.textin {
+    width: 95%;
+    margin: 3%;
+    position: relative;
+}
+
+input::placeholder {
+    color: #0076ff;
+}
+
+input[type="email"], input[type="password"] {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 95%;
+    background-color: #141429;
+    color: #3399FF;
+}
+
+input[type="submit"] {
+    margin: 4%;
+    font-size: 18px;
+    width: 140px;
+    height: 40px;
+    background-color: #0044ad;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0076ff;
+    transition: 0.2s;
+}
+
+.sub {
+    margin: 6%;
+    float: left;
+    vertical-align: middle;
+}
+
+.error {
+    margin: 20px auto;
+    width: 240px;
+}
+
+.error p {
+    color: red;
+    border: 1px solid red;
+    border-radius: 3px;
+    padding: 3px;
+    text-align: center;
+    font-size: 20px;
+}

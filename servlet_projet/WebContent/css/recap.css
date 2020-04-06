@@ -1,0 +1,129 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #1c223a;
+    line-height: 1.4;
+    vertical-align: middle;
+    padding-top: 5%;
+}
+
+fieldset {
+    font-size: 24px;
+    color: #ffffff;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #0044ad;
+    max-width: 900px;
+    margin: auto;
+    align-items: center;
+}
+
+legend {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+:focus {
+    outline: none;
+}
+
+.textin {
+    width: 80%;
+    margin: 3%;
+    position: relative;
+}
+
+.react ~ .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #3399FF;
+
+}
+
+.react:focus ~ .underline {
+    width: 85%;
+    transition: 0.3s;
+}
+
+.genre {
+    margin: 3%;
+    float: left;
+}
+
+input::placeholder {
+    color: #0076ff;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 18px;
+    padding: 3px;
+    border-style: none none solid none;
+    border-bottom: 1px solid #747a99;
+    width: 85%;
+    background-color: #1c223a;
+    color: #3399FF;
+}
+
+input[type="radio"] {
+    vertical-align: middle;
+}
+
+input[type="submit"] {
+    margin: 4%;
+    font-size: 18px;
+    padding: 3% 12% 3% 12%;
+    background-color: #0044ad;
+    color: #ffffff;
+    float: right;
+    border-style: none;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0076ff;
+    transition: 0.2s;
+}
+
+label {
+    font-size: 18px;
+    text-align: left;
+    color: #b8b8b8;
+}
+
+#leftcmp {
+    float: left;
+    width: 420px;
+}
+
+#rightcmp {
+    width: 420px;
+    height: 250px;
+    float: right;
+    border-left: 2px solid #0076ff;
+}
+
+p {
+    margin: 3%;
+    line-height: 150%;
+    font-size: 18px;
+    border-style: none none solid none;
+    border-bottom: 1px solid #747a99;
+    width: 85%;
+    color: #3399FF;
+}
+
+#cancel {
+    margin: 4%;
+    font-size: 18px;
+    padding: 3% 12% 3% 12%;
+    background-color: #fb3600;
+    color: #ffffff;
+    float: right;
+    border-style: none;
+    border-radius: 3px;
+}
