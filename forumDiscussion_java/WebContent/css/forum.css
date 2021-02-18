@@ -1,0 +1,167 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #1c223a;
+    align-content: center;
+    display: grid;
+    padding-top: 5%;
+}
+
+.admin {
+    margin: 40px auto;
+}
+
+.surrond {
+    display: inline-block;
+    font-size: 24px;
+    color: #ffffff;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #0044ad;
+    width: auto;
+    margin: auto;
+}
+
+.titre {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+p {
+    font-size: 18px;
+    margin: 4px;
+}
+
+.description {
+    width: 535px;
+}
+
+.home {
+    margin: 1%;
+    text-align: center;
+    display: inline;
+    width: auto;
+}
+
+th {
+    padding: 8px;
+    border: 1px solid #0076ff;
+}
+
+td {
+    color: #ffffff;
+    padding: 8px;
+}
+
+tr:hover {
+    background-color: #233251;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #0076ff;
+    text-align: left;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.tuple {
+    border: 2px solid #0076ff;
+}
+
+.tupleself {
+    background: #282757;
+    border: 2px solid #0076ff;
+}
+
+.message, .messagein {
+    color: #3399FF;
+    min-width: 360px;
+    font-size: 14px;
+    vertical-align:top;
+}
+
+.time {
+    font-size: 14px;
+}
+
+input[type="submit"] {
+    font-size: 18px;
+    width: 140px;
+    height: 40px;
+    background-color: #0044ad;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0076ff;
+    transition: 0.2s;
+}
+
+textarea {
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 95%;
+    color: #3399FF;
+    background-color: #141429;
+    resize: none;
+}
+
+.message textarea {
+    cursor : pointer;
+}
+
+.messagein textarea {
+    cursor: default;
+}
+
+a, a:visited, a:active {
+    color: white;
+    text-decoration: none;
+
+}
+
+.edit, .delete {
+    margin: 3px;
+    padding: 6px;
+    position: relative;
+    top: 12px;
+    border-radius: 3px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.fdelete {
+    padding: 10px;
+    border-radius: 3px;
+    user-select: none;
+    cursor: default;
+}
+
+.edit {
+    background: #0044ad;
+}
+
+.edit:hover {
+    background-color: #0076ff;
+    transition: 0.2s;
+}
+
+.delete, .fdelete {
+    background: #6e0000;
+}
+
+.delete:hover, .fdelete:hover {
+    background-color: #dc0000;
+    transition: 0.2s;
+}
+

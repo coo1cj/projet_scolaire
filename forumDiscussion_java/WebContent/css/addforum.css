@@ -1,0 +1,83 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #1c223a;
+    align-content: center;
+    display: grid;
+    padding-top: 5%;
+}
+
+.surrond {
+    display: inline-block;
+    font-size: 24px;
+    color: #ffffff;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #0044ad;
+    width: 40%;
+    margin: auto;
+}
+
+.titre {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.react ~ .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: #3399FF;
+
+}
+
+.react:focus ~ .underline {
+    width: 95%;
+    transition: 0.3s;
+}
+
+input[type="text"], textarea {
+    font-size: 18px;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 95%;
+    background-color: #141429;
+    color: #3399FF;
+}
+
+textarea {
+    height: 200px;
+    resize: none;
+}
+
+.home {
+    margin: 5%;
+    text-align: center;
+    display: inline;
+    width: auto;
+}
+
+input[type="submit"] {
+    font-size: 18px;
+    width: 140px;
+    height: 40px;
+    background-color: #0044ad;
+    color: #ffffff;
+    border-style: none;
+    border-radius: 3px;
+}
+
+input[type="submit"]:hover {
+    background-color: #0076ff;
+    transition: 0.2s;
+}
+
+.validate {
+    float: left;
+    vertical-align: middle;
+}

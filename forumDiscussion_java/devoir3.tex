@@ -1,0 +1,96 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{systeme}
+\usepackage{float}
+\usepackage[skip=8pt]{caption}
+\usepackage[french]{babel}
+\usepackage{listings}
+
+\author{
+	Jian Chen
+	\and
+	Valentin Mention
+}
+\title{SR03\\
+	Devoir 3}
+
+\begin{document}
+	\maketitle
+	\newpage
+	
+	\tableofcontents
+	\newpage
+	
+	\section{Présentation du projet}
+	
+	\subsection{Objectifs}
+	
+	L'objectif de ce devoir était de réaliser un forum de discussion web, avec la possibilité pour les utilisateurs de se connecter, de s'abonner à des forums et d'y poster des messages. Les administrateurs en plus de cela peuvent créer des forums et supprimer des forums, ainsi que gérer les utilisateurs (droits, suppression d'un compte).
+	
+	Toutes les informations relatives aux forums et aux utilisateurs doivent être stockées dans une base de donnée, consultée par la partie back-end.
+	
+	\subsection{Implémentation} 
+	
+	\subsubsection{Base de donnée}
+	
+	Nous utilisons une base de donnée MySQL avec le moteur InnoDB et  comportant quatre tables :
+	
+	\begin{itemize}
+		\item Users contenant les informations relatives au utilisateurs
+		\item Forums contenant la liste des forums
+		\item Messages contenant l'intégralité des messages de tous les forums
+		\item Subscription contenant les abonnements des utilisateurs
+	\end{itemize}
+	
+	\bigskip
+
+	Le fichier de création de cette base de donnée est disponible à la racine du projet. Certaines propriétés des colonnes sont indispensables au bon fonctionnement de l'application (notamment les instructions ON DELETE et ON UPDATE).
+	
+	\subsubsection{Web backend}
+	
+	La partie backend est gérée par une application Java EE constituée d'un certain nombre de servlets et de filtres. Les filtres implémentés vérifient les droits d'accès de l'utilisateur aux différentes pages du site, et bloquent l'accès aux ressources non-autorisées (comme les fichiers sources .jsp).
+	
+	L'application est structurée selon le concept MVC. Les servlets et les filtres occupent donc le rôle de contrôleurs. Les vues sont constituées des fichiers jsp, js et css, et la partie modèle est constituée de classes Java utilisant le framework Hibernate.
+	
+	Chaque table de la base de donnée est représentée par une classe du modèle, respectant le design pattern Active Record.
+	
+	\subsubsection{Web frontend}
+	
+	La partie frontend est consituée du html généré par les fichiers jsp, ainsi que des feuilles de styles css associées et pour certaines pages de fichiers javascript utilisant jQuery et Ajax. 
+	
+
+	\section{Structure et fonctionnement du site}
+	
+	\subsection{Structure}
+	
+	La première page du site est la page de connexion. Elle permet de rediriger un utilisateur connecté vers l'index, ou de s'inscrire.
+	
+	Dans l'index, l'utilisateur a accès aux forums  auxquels il est abonné, ainsi qu'à un lien vers la liste des forums et un lien pour se déconnecter. Les administrateurs ont en plus un lien vers la liste des utilisateurs.
+	
+	Dans la liste des forums, l'utilisateur peut se rendre dans les différents forums (en cliquant sur leur nom), consulter la description des forums (en laissant le curseur sur le nom d'un forum), et s'abonner ou se désabonner d'un forum. Les administrateurs peuvent en plus créer un forum.
+	
+	Une fois dans un forum spécifique, l'utilisateur peut ajouter un message, éditer ou supprimer un message qu'il a posté (en cliquant sur le message, deux boutons apparaissent). Les administrateurs ont également la possibilité de supprimer le forum via un bouton en deux étapes pour éviter les fausses manipulations.
+	
+	Dans la liste des utilisateurs, les administrateurs peuvent changer leurs droits (Accès non autorisé, accès utilisateur ou accès administrateur). Les changements sont stockés immédiatement dans la base de donnée. Aussi, ils peuvent supprimer un utilisateur. Tous ses abonnements sont alors supprimés, ainsi que son entrée dans la base de donnée. Son identifiant dans les message qu'il a posté est remplacé par "Compte supprimé". Il est important que la base de donnée ait été créé avec les instructions ON DELETE SET NULL (comme dans le fichier .sql fourni) pour l'auteur des messages, sans quoi la suppression ne peut être effectuée.
+	
+	\subsection{Fonctionnement}
+	
+	Le site a été conçu afin d'être ergonomique et intuitif. Depuis l'index, il est possible de se rendre dans les forums abonnés en cliquant sur leur nom, ou de les supprimer des abonnements en cliquant sur la croix.
+	
+	Ajouter un message depuis un forum se fait en saisissant un texte, puis en cliquant sur envoyer. Modifier un message que l'on a écrit se fait en cliquant sur notre message, puis sur modifier, et enfin sur valider une fois le texte changé.
+	
+	Changer les droits des utilisateurs se fait en cliquant sur le symbole correspondant aux permissions souhaitées dans le menu utilisateurs. Attention à ne pas supprimer ses propres permissions, sans quoi un accès manuel à la base de donnée sera nécessaire.
+	
+	Supprimer un utilisateur se fait dans le menu utilisateurs en sélectionnant son nom dans la liste déroulante puis en cliquant sur supprimer.
+	
+	Supprimer un forum se fait depuis le forum en question, en cliquant sur Supprimer le forum, puis en patientant une seconde et en cliquant sur confirmer.
+
+
+\end{document}
