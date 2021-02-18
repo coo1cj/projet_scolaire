@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"server","l":"Channel"},{"p":"client","l":"Client"},{"p":"server","l":"Message"},{"p":"client","l":"MessageInput"},{"p":"client","l":"MessageReceptor"},{"p":"server","l":"Server"}]
